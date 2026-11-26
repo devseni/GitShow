@@ -26,7 +26,7 @@ export function useGithubUser(): UseGithubUserReturn {
       const userRes = await fetch(`https://api.github.com/users/${username}`);
 
       if (userRes.status === 404) {
-        setError(`User "${username}" not found on GitHub.`);
+        setError("User not found on GitHub.");
         return;
       }
 
@@ -39,7 +39,7 @@ export function useGithubUser(): UseGithubUserReturn {
       setUser(userData);
 
       const reposRes = await fetch(
-        `https://api.github.com/users/${username}/repos?sort=updated&per_page=6`
+        `https://api.github.com/users/${username}/repos?sort=updated&per_page=6`,
       );
       const reposData: GithubRepo[] = await reposRes.json();
       setRepos(reposData);
